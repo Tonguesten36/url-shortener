@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>URL Shortener</title>
+    <style>
+      .shorten-url, .update-shortened-url, .delete-shortened-url, .get-original-url {
+        margin-top: 20px;
+      }
+      form {
+        margin-bottom: 10px;
+      }
+      label {
+        margin-bottom: 5px;
+        display:block;
+      }
+      input {
+        display: block;
+        padding: 5px;
+      }
+      button {
+        padding: 5px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #0056b3;
+      }
+      .shortened-url-result, .updated-url-result, .deleted-url-result {
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>URL Shortener</h1>
+    <div class="shorten-url">
+      <h2>Shorten URL</h2>
+      <form action="/shorten" method="post">
+        <label for="url">URL:</label>
+        <input type="text" id="url" name="url" />
+        <br>
+        <button type="submit">Shorten</button>
+      </form>
+      <div class="shortened-url-result">
+        {{#if shortCode}}
+          <p>Shortened URL: {{frontend_url}}/{{shortCode}}</p>
+        {{/if}}
+      </div>
+    </div>
+    {{!-- <div class="update-shortened-url">
+      <h2>Update Shortened URL</h2>
+      <form action="/shorten/update" method="POST">
+        {{!-- <input type="hidden" name="_method" value="PUT"> --}}
+        <label for="url">Existing Shortened URL:</label>
+        <input type="text" id="shortenedUrl" name="url" value="{{shortenedUrl}}" required/>
+        <br>
+        
+        <label for="newUrl">New Destination URL:</label>
+        <input type="text" id="newOriginalUrl" name="newUrl" value="{{newUrl}}" required/>
+        <br>
+        <button type="submit">Update</button>
+      </form>
+      <div class="updated-url-result">
+        {{#if updatedUrl}}
+          <p>Updated URL: {{updatedUrl}}</p>
+          <p>Shortened URL: {{frontend_url}}/{{shortCode}}</p>
+        {{/if}}
+      </div>
+    </div>
+    <div class="delete-shortened-url">
+      <h2>Delete Shortened URL</h2>
+      <form action="/shorten" method="delete">
+        <label for="url">Shortened URL:</label>
+        <input type="text" id="url" name="url" />
+        <br>
+        <button type="submit">Delete</button>
+      </form>
+      <div class="deleted-url-result">
+        {{#if deletedUrl}}
+          <p>Deleted URL: {{deletedUrl}}</p>
+        {{/if}}
+      </div>
+    </div>
+    <div class="get-original-url">
+      <h2>Get Original URL</h2>
+      <form action="/shorten/original" method="get">
+        <label for="url">Shortened URL:</label>
+        <input type="text" id="url" name="url" />
+        <br>
+        <button type="submit">Get Original URL</button>
+      </form>
+      <div class="original-url-result">
+        {{#if url}}
+          <p>Original URL: {{url}}</p>
+        {{/if}}
+      </div>
+    </div> --}}
+  </body>
+</html>
