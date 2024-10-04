@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongo  # Ensure MongoDB is running before the app starts
+    environment:
+      - DB_URI=${DB_URI}  # MongoDB connection string
+      - DB_USERNAME=${DB_USERNAME}  # MongoDB username
+      - DB_PASS=${DB_PASS}  # MongoDB password
+      - DB_DB=${DB_NAME}  # MongoDB database name
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db  # Persistent data
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${DB_USERNAME}  # MongoDB root username
+      - MONGO_INITDB_ROOT_PASSWORD=${DB_PASS}  # MongoDB root password
+      - MONGO_INITDB_DATABASE=${DB_NAME}  # MongoDB database name
+
+volumes:
+  mongo-data:
